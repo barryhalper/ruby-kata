@@ -3,4 +3,5 @@ Test driven programming excericies devised by Madetech https://learn.madetech.co
 
 ## Technlogies
 - Ruby '2.6.6'
-- Rspec
+- Rspec 3.9.3
+
