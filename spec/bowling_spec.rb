@@ -11,39 +11,30 @@ RSpec.describe Bowling do
   it 'has a property for a number of frames' do
     expect(subject.number_frames).to eq(10)
   end
-   
-  #   it 'should check no more than two rolls per frame' do
-  #     subject.begin_frame
-  #     #expect(subject.roll(rand(10)).to_not eq(11))
-  # end
-
+ 
   end
 
   describe "#begin_frame"  do
     game = Bowling.new
     it 'add a frame to the game and check number of games is 9' do
-     # puts object
       game.begin_frame
       expect(game.number_frames_remaing).to eq(9)
-    
     end
+
     it 'add another frames to the same game and check number of games is no longer the same' do
-      #puts object
       expect{game.begin_frame}.to change{game.number_frames_remaing}.by(-1)
     end
     
    describe '#roll' do
       new_game = Bowling.new
       new_game.begin_frame
-      #puts new_game.frames.length
-      
+     
       it 'should return a score of 1' do
         expect(new_game.roll(9)).to eq(1)
       end
 
       it 'another roll of 1 should return 0' do
         expect(new_game.roll(1)).to eq(0)
-        #expect(new_game.total_score).to eq(10)
       end
 
       it 'another roll should return throw a roll error' do
@@ -58,33 +49,28 @@ RSpec.describe Bowling do
       end
 
       it 'should record strike' do
-        
         expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
         new_game.roll(10)
-        #puts new_game.inspect
-        #new_game.roll(4)
+
         expect(new_game.current_score).to eq(29)
       end
 
 
       it 'should add frame value of 5 to new frame total' do
         new_game.begin_frame
-        #expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
         new_game.roll(2)
         new_game.roll(3)
-        #new_game.roll(4)
         expect(new_game.current_score).to eq(34)
       end
 
       it 'should add frame value of 9 to new frame total' do
         new_game.begin_frame
-        #expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
         new_game.roll(7)
         new_game.roll(2)
-        #new_game.roll(4)
+      
         expect(new_game.current_score).to eq(43)
       end
-      #puts new_game.inspect
+    
       it 'should be a total of 53 after 4 frames' do
         expect(new_game.total_score).to eq(53)
           
@@ -151,7 +137,7 @@ RSpec.describe Bowling do
         puts full_game.frames.last.inspect
         expect(full_game.frames.last[:score]).to be >= 10
        
-        #expect(full_game.frames.last[:rolls].length).to be > 1
+        
       end
     end
 
@@ -177,14 +163,14 @@ RSpec.describe Bowling do
      
     describe "last frame with a spare" do 
       it 'should have a score greater than 10' do
-        #puts full_game.frames.last.inspect
+       
         expect(full_game.frames.last[:score]).to be >= 10
         expect(full_game.frames.last[:rolls].length).to be <= 2 
-        #expect(full_game.frames.last[:rolls].length).to be > 1
+    
       end
     end
 
-
+   
 
   end
 

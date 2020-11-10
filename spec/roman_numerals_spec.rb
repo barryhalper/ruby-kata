@@ -9,8 +9,6 @@ RSpec.describe RomanNumerals  do
       expect(subject.large_numbers.length).to eq(13)        
     end
 
-    
-    
   end
 
   describe '#convert' do

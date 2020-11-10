@@ -8,10 +8,6 @@ RSpec.describe LCD do
       expect(subject.numbers.length).to eq(9)        
     end
 
-    # it 'has an array of lcd numbers' do
-    #    subject.numbers.each do |i| 
-    #      puts i
-    #   end 
     it 'should convert 1 to the right figure' do
       expect(subject.convert(1)).to eq(" \n|\n|")
     end
@@ -19,7 +15,6 @@ RSpec.describe LCD do
     it 'should convert 2 to the  "_\n_|\n|_"' do
       expect(subject.convert(2)).to eq("_\n_|\n|_")
     end
-
 
       it 'should add dashes based on number in width' do
         number = 5

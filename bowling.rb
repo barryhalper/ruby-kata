@@ -132,6 +132,8 @@ class Bowling
     def next_frame(item)
       @frames[@frames.find_index(item)+1]
     end
+
+  
     
 
 
