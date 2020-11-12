@@ -30,7 +30,15 @@ example_id                           | status | run_time        |
 ./spec/lcd_spec.rb[1:1:5:1]          | passed | 0.00012 seconds |
 ./spec/lcd_spec.rb[1:1:5:2]          | passed | 0.00022 seconds |
 ./spec/lcd_spec.rb[1:1:5:3]          | passed | 0.00013 seconds |
-./spec/person_spec.rb[1:1]           | passed | 0.00586 seconds |
+./spec/mumble_spec.rb[1:1:1]         | passed | 0.01678 seconds |
+./spec/mumble_spec.rb[2:1]           | passed | 0.00454 seconds |
+./spec/mumble_spec.rb[2:2:1]         | passed | 0.00242 seconds |
+./spec/mumble_spec.rb[2:2:2]         | passed | 0.00012 seconds |
+./spec/mumble_spec.rb[2:2:3]         | passed | 0.0001 seconds  |
+./spec/mumble_spec.rb[2:2:4]         | passed | 0.00007 seconds |
+./spec/mumble_spec.rb[2:2:5]         | passed | 0.0037 seconds  |
+./spec/mumble_spec.rb[2:2:6]         | passed | 0.00009 seconds |
+./spec/mumble_spec.rb[2:2:7]         | passed | 0.00007 seconds |
 ./spec/roman_numerals_spec.rb[1:1:1] | passed | 0.00631 seconds |
 ./spec/roman_numerals_spec.rb[1:2:1] | passed | 0.00315 seconds |
 ./spec/roman_numerals_spec.rb[1:2:2] | passed | 0.00014 seconds |
