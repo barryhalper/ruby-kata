@@ -5,6 +5,8 @@ module Mumble
     find_letter_position(string.downcase)
   end
 
+  private 
+
   def self.find_letter_position(string)
     return_array = []
     string.split("").each.with_index  {|value, index|  
