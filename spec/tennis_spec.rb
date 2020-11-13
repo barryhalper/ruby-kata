@@ -12,14 +12,12 @@ RSpec.describe Tennis::Player do
   let(:player1) { Tennis::Player.new("barry")} 
   it 'should be class with a single constructor argument' do
     expect(player1.name).to eq('barry')
-   # puts subject
+  
 
   end
 
   it 'should have an attribute for points set to zero' do
     expect(player1.points).to be_kind_of(Array)
-   # expect(player1.points[0]).to eq(Tennis::SCORING[0])
-   # puts subject
 
   end
 end
@@ -39,13 +37,12 @@ RSpec.describe Tennis::Game do
 
 
   it 'should be a class with an array property of players' do
-    #expect(subject).to have_attributes(name:[])
     expect(@game.players).to be_kind_of(Array)
 
   end
 
   it 'should have a property of which players turn it is' do
-    #expect(subject).to have_attributes(name:[])
+   
     expect(@game.player_turn).to eq(0)
 
   end
@@ -80,7 +77,7 @@ RSpec.describe Tennis::Game do
        @game.add_point(1) 
        expect(@game.players[1].points).to eq(["love", "fifteen"])
        expect(@game).to respond_to(:get_score)
-       #expect(@game.get_score).to eq([Tennis::SCORING[2],Tennis::SCORING[1]])
+       expect(@game.get_score).to eq([Tennis::SCORING[2],Tennis::SCORING[1]])
      
        
     end
@@ -104,21 +101,19 @@ RSpec.describe Tennis::Game do
     it 'should serv and return' do
       add_players_helper_method
       expect(@game).to respond_to(:serve)
-      #expect(@game.serve).to be <=1
-
-      #expect(@game.serve?).to eq(0)
+      
     end
 
     it 'should play 4 sets and check the score is greater than 30' do
       add_players_helper_method
       4.times { @game.serve }
       expect(@game.get_score.length).to eq(2)
-      #puts @game.get_score
+      
     end
      it 'should play 8 sets and check the score is greater than 30' do
       add_players_helper_method
        8.times { @game.serve }
-       #expect(@game.is_winner?).to eq(false)
+       
      end
     
   end
