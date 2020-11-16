@@ -26,9 +26,13 @@ RSpec.describe RomanNumerals  do
       expect(subject.convert(number)).to eq('')
     end
 
+    it 'should return III for 3' do
+      number = 3
+      expect(subject.convert(number)).to eq('III')
+    end
+
     it 'should check if number is less than 11' do
       10.times do |value|
-          puts subject.convert(value)
           expect(subject.convert(value)).not_to be_nil
       end
     end
