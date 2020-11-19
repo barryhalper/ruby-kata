@@ -1,26 +1,21 @@
 require_relative '../video_store'
 
-
-
-
 RSpec.describe 'VideoStore' do
 
-  
-  it 'should have a constant array of type' do
+  it 'should have a constant of an array type' do
     expect(VideoStore::MOVIETYPES).to be_kind_of(Array)
     expect(VideoStore::MOVIETYPES.length).to eq(3)
     expect(VideoStore::MOVIETYPES[0]).to be_kind_of(String)
     expect(VideoStore::MOVIETYPES[0]).to eq('Regular')
   end
 
-  it 'should have a constant float'do
+  it 'should have a constant of type float'do
     expect(VideoStore::EARLYRATE).to be_kind_of(Float)
     expect(VideoStore::EARLYRATE).to eq(2)
     expect(VideoStore::EARLYRATE).to eql(2.00)
   end
   
   describe VideoStore::Movie do
-   
     before(:example) do
       @movie = VideoStore::Movie.new(VideoStore::MOVIETYPES[0], "Tenet", 1) 
     end
