@@ -21,7 +21,7 @@ module VideoStore
          if is_children?
           number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
          else
-          number_days < @max_days ? VideoStore::EARLYRATE : VideoStore::EARLYRATE + (days_of_full_rate * day_rate) 
+          number_days < @max_days ? VideoStore::EARLYRATE : (days_of_full_rate * day_rate)  + VideoStore::EARLYRATE 
          end
       end
 
@@ -45,8 +45,6 @@ module VideoStore
       def get_type
        VideoStore::MOVIETYPES.find {|i| i == @type}
       end
-
-   
 
       def get_type_index
         VideoStore::MOVIETYPES.index {|i| i == @type}

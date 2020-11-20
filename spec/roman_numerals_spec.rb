@@ -5,8 +5,9 @@ RSpec.describe RomanNumerals  do
   describe 'a class that manages this kata' do
   
     it 'has a property for large numbers' do
-      expect(subject.large_numbers).not_to be_nil
-      expect(subject.large_numbers.length).to eq(13)        
+      expect(RomanNumerals::MAPPINGS).not_to be_nil
+      expect(RomanNumerals::MAPPINGS.length).to eq(13)    
+      #expect(subject.large_numbers.length).to eq(13)      
     end
 
   end
