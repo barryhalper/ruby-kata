@@ -8,11 +8,16 @@ module VideoStore
   class Movie
     attr_reader :type, :title, :number_days
     
-      def initialize(type, title, number_days)
-        @type = type
-        @title = title
-        @number_days = number_days
-        @max_days = 3
+      def initialize(args)
+        args = defaults.merge(args)
+        @type = args[:type]
+        @title =  args[:title]
+        @number_days = args[:number_days]
+        @max_days = args[:max_days]
+      end
+
+      def defaults
+        {:number_days => 1, :max_days => 3}
       end
 
       def price_per_day
@@ -63,7 +68,7 @@ module VideoStore
     
        def add_movie(movie)
         @movies << movie
-      end
+       end
 
       def get_total
         total = 0
