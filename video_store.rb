@@ -5,11 +5,11 @@ module VideoStore
   
 
   class Movie
-    attr_reader :type, :title, :number_days
+    attr_reader :title, :number_days
     
       def initialize(args={})
         args = defaults.merge(args)
-        #@type = args[:type]
+        
         @title =  args[:title]
         @number_days = args[:number_days]
         @max_days = args[:max_days]
