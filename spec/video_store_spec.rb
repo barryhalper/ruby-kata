@@ -2,63 +2,40 @@ require_relative '../video_store'
 
 RSpec.describe 'VideoStore' do
 
-  it 'should have a constant of an array type' do
-    expect(VideoStore::MOVIETYPES).to be_kind_of(Array)
-    expect(VideoStore::MOVIETYPES.length).to eq(3)
-    expect(VideoStore::MOVIETYPES[0]).to be_kind_of(String)
-    expect(VideoStore::MOVIETYPES[0]).to eq('Regular')
-  end
-
   it 'should have a constant of type float'do
     expect(VideoStore::EARLYRATE).to be_kind_of(Float)
     expect(VideoStore::EARLYRATE).to eq(2)
     expect(VideoStore::EARLYRATE).to eql(2.00)
   end
   
-  describe VideoStore::Movie do
+  describe VideoStore::RegularMovie do
     before(:example) do
-      args = {title:"Tenet", number_days:1, type:VideoStore::MOVIETYPES[0]}
-      @movie = VideoStore::Movie.new(args) 
+      args = {title:"Tenet", number_days:1}
+      @movie = VideoStore::RegularMovie.new(args) 
     end
+  
 
-      subject { VideoStore::Movie.new({title:"b", type:"a", number_days:3}) }
+    subject { VideoStore::RegularMovie.new({title:"b", number_days:3}) }
     
       it 'should take arguments from constructor' do
-        pp subject.inspect
-        expect(subject.type).to eq("a")
         expect(subject.title).to eq("b")
         expect(subject.number_days).to eq(3)
       end
-
-      describe '#get_type' do
-        subject {  @movie.get_type }
-        it 'should return a hash of movie type' do 
-          is_expected.to eq "Regular"
-        end
-      end
-
-      describe '#price' do
+    
+      describe '#day_rate' do
         subject {  @movie.day_rate }
           it 'should return a float value' do
             is_expected.to be_kind_of(Float)
             is_expected.to eql 1.5
-          end
-        
-      end
 
-      
-      describe '#get_type_index' do
-        subject {  @movie.get_type_index }
-          it 'should return an integer value' do
-            is_expected.to eq 0
           end
         
       end
 
 
       describe '#price_per_day' do
-        args = {title:"Tenet", number_days:3, type:VideoStore::MOVIETYPES[1]}
-        subject { VideoStore::Movie.new(args) }
+        args = {title:"Tenet", number_days:3}
+        subject { VideoStore::NewMovie.new(args) }
         
         it 'should be 5.00 for a "New release" of 3 days' do
           expect(subject.price_per_day).to eql(5.00)
@@ -70,12 +47,12 @@ RSpec.describe 'VideoStore' do
            expect(regular_movie.price_per_day).to eql(2.00)
         end
        
-        let(:regular_movie) {VideoStore::Movie.new( {title:"blade runner", number_days:2, type:VideoStore::MOVIETYPES[0]})}
+        let(:regular_movie) {VideoStore::Movie.new( {title:"blade runner", number_days:2})}
         it 'should be 2.00 for a "Regular movie" of 2 days' do
          expect(regular_movie.price_per_day).to eql(2.00)
         end
         
-        let(:children_movie) {VideoStore::Movie.new({title:"dumbo", number_days:1, type:VideoStore::MOVIETYPES[2]})}
+        let(:children_movie) {VideoStore::ChildrensMovie.new({title:"dumbo", number_days:1})}
         
         it 'should be 1.50 for a "childrens movie" of 2 days' do
          expect(children_movie.price_per_day).to eql(1.50)
@@ -84,12 +61,12 @@ RSpec.describe 'VideoStore' do
       end
 
       describe '#renter_points' do 
-        let(:jaws) {VideoStore::Movie.new({title:"jaws", number_days:2, type:VideoStore::MOVIETYPES[0]})}
+        let(:jaws) {VideoStore::RegularMovie.new({title:"jaws", number_days:2})}
         it 'should return 1 point regular movie for one day' do
             expect(jaws.renter_points).to eq(1)
         end
 
-        let(:dune) {VideoStore::Movie.new({title:"dune", number_days:3, type:VideoStore::MOVIETYPES[1]})}
+        let(:dune) {VideoStore::NewMovie.new({title:"dune", number_days:3})}
         it 'should return 2 points for regular movie for 3 days' do
             expect(dune.renter_points).to eq(2)
         end
@@ -101,7 +78,7 @@ RSpec.describe 'VideoStore' do
   describe 'Rentals' do 
     subject{ VideoStore::Rentals.new("Barry Halper") }
 
-    let(:arrival){ VideoStore::Movie.new({title:"arrival", number_days:1, type:VideoStore::MOVIETYPES[0]})}
+    let(:arrival){ VideoStore::RegularMovie.new({title:"arrival", number_days:1})}
 
     it 'should have a public attribute for the customer set to the init argument' do 
       expect(subject.customer).to eq("Barry Halper")
@@ -140,12 +117,11 @@ RSpec.describe 'VideoStore' do
   describe 'VideoStore::statement' do
       before(:example) do
         rentals =  VideoStore::Rentals.new("Barry Halper")
-        rentals.add_movie(VideoStore::Movie.new({title:"Crazynotes", number_days:1, type:VideoStore::MOVIETYPES[0]}))
-        rentals.add_movie(VideoStore::Movie.new({title:"Teeth", number_days:1, type:VideoStore::MOVIETYPES[0]}))
-        rentals.add_movie(VideoStore::Movie.new({title:"The Web", number_days:3, type:VideoStore::MOVIETYPES[0]}))
+        rentals.add_movie(VideoStore::RegularMovie.new({title:"Crazynotes", number_days:1}))
+        rentals.add_movie(VideoStore::RegularMovie.new({title:"Teeth", number_days:1}))
+        rentals.add_movie(VideoStore::RegularMovie.new({title:"The Web", number_days:3}))
         @output = VideoStore::statment(rentals)
       end
-
 
     it 'should return an array to be printed ' do
       expect(@output).to be_kind_of(Array)
@@ -181,5 +157,5 @@ RSpec.describe 'VideoStore' do
     end
   end
   
-   
+
 end

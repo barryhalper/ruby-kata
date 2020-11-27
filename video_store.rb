@@ -1,6 +1,6 @@
 module VideoStore
   
-  MOVIETYPES = ['Regular', 'New Release',  'Childrens']
+  #MOVIETYPES = ['Regular', 'New Release',  'Childrens']
   PRICE      = 1.50
   EARLYRATE  = 2.00
   
@@ -8,9 +8,9 @@ module VideoStore
   class Movie
     attr_reader :type, :title, :number_days
     
-      def initialize(args)
+      def initialize(args={})
         args = defaults.merge(args)
-        @type = args[:type]
+        #@type = args[:type]
         @title =  args[:title]
         @number_days = args[:number_days]
         @max_days = args[:max_days]
@@ -22,41 +22,58 @@ module VideoStore
 
       def price_per_day
          days_before_cutoff = (@max_days-1)
-         days_of_full_rate = number_days - days_before_cutoff
-         if is_children?
-          number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
-         else
+         days_of_full_rate = @number_days - days_before_cutoff
+        #  if is_children?
+        #   number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
+        #  else
           number_days < @max_days ? VideoStore::EARLYRATE : (days_of_full_rate * day_rate)  + VideoStore::EARLYRATE 
-         end
+         
       end
 
       def renter_points
-        return 1 unless extra_points? 
-        number_days >= 2 ? 2 : 1
-           
+         1 
       end
-      def is_children?
-        get_type == MOVIETYPES.last
-      end
+     
 
-      def extra_points?
-        get_type == MOVIETYPES[1]
-      end
+      # def extra_points?
+      #   get_type == MOVIETYPES[1]
+      # end
 
       def day_rate 
-         get_type_index == 1 ? VideoStore::PRICE * 2 : VideoStore::PRICE
+        # get_type_index == 1 ? VideoStore::PRICE * 2 : VideoStore::PRICE
+        VideoStore::PRICE
       end
 
-      def get_type
-       VideoStore::MOVIETYPES.find {|i| i == @type}
-      end
+      # def get_type
+      #  VideoStore::MOVIETYPES.find {|i| i == @type}
+      # end
 
-      def get_type_index
-        VideoStore::MOVIETYPES.index {|i| i == @type}
-      end
+      # def get_type_index
+      #   VideoStore::MOVIETYPES.index {|i| i == @type}
+      # end
   
+    end
+
+  class RegularMovie < Movie
+   
   end
 
+  class NewMovie < Movie
+    def renter_points
+      number_days >= 2 ? 2 : 1   
+    end
+
+
+    def day_rate 
+      VideoStore::PRICE * 2
+    end
+  end
+
+  class ChildrensMovie < Movie
+    def price_per_day
+      number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
+    end
+  end
   
   class Rentals
     attr_accessor :movies, :customer
