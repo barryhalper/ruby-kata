@@ -1,6 +1,5 @@
 module VideoStore
   
-  #MOVIETYPES = ['Regular', 'New Release',  'Childrens']
   PRICE      = 1.50
   EARLYRATE  = 2.00
   
@@ -23,9 +22,7 @@ module VideoStore
       def price_per_day
          days_before_cutoff = (@max_days-1)
          days_of_full_rate = @number_days - days_before_cutoff
-        #  if is_children?
-        #   number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
-        #  else
+       
           number_days < @max_days ? VideoStore::EARLYRATE : (days_of_full_rate * day_rate)  + VideoStore::EARLYRATE 
          
       end
@@ -35,22 +32,12 @@ module VideoStore
       end
      
 
-      # def extra_points?
-      #   get_type == MOVIETYPES[1]
-      # end
-
+  
       def day_rate 
-        # get_type_index == 1 ? VideoStore::PRICE * 2 : VideoStore::PRICE
         VideoStore::PRICE
       end
 
-      # def get_type
-      #  VideoStore::MOVIETYPES.find {|i| i == @type}
-      # end
-
-      # def get_type_index
-      #   VideoStore::MOVIETYPES.index {|i| i == @type}
-      # end
+    
   
     end
 
