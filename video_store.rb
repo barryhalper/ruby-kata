@@ -7,7 +7,6 @@ module VideoStore
     
       def initialize(args={})
         args = defaults.merge(args)
-        
         @title =  args[:title]
         @number_days = args[:number_days]
         @max_days = args[:max_days]

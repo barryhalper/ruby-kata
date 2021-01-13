@@ -17,8 +17,7 @@ RSpec.describe LCD do
     end
 
       it 'should add dashes based on number in width' do
-        number = 5
-        expect(subject.convert(number)).to eq("_\n|_\n_|")
+        expect(subject.convert(5)).to eq("_\n|_\n_|")
       end
   
 
