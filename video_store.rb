@@ -2,8 +2,6 @@ module VideoStore
   
   PRICE      = 1.50
   EARLYRATE  = 2.00
-  
-
   class Movie
     attr_reader :title, :number_days
     
@@ -22,29 +20,21 @@ module VideoStore
       def price_per_day
          days_before_cutoff = (@max_days-1)
          days_of_full_rate = @number_days - days_before_cutoff
-       
-          number_days < @max_days ? VideoStore::EARLYRATE : (days_of_full_rate * day_rate)  + VideoStore::EARLYRATE 
-         
+        number_days < @max_days ? VideoStore::EARLYRATE : (days_of_full_rate * day_rate)  + VideoStore::EARLYRATE 
       end
 
       def renter_points
          1 
       end
      
-
-  
       def day_rate 
         VideoStore::PRICE
       end
-
-    
-  
     end
 
   class RegularMovie < Movie
    
   end
-
   class NewMovie < Movie
     def renter_points
       number_days >= 2 ? 2 : 1   
@@ -55,7 +45,6 @@ module VideoStore
       VideoStore::PRICE * 2
     end
   end
-
   class ChildrensMovie < Movie
     def price_per_day
       number_days <= @max_days ? day_rate : day_rate * (number_days - @max_days) + VideoStore::PRICE
