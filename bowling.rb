@@ -109,7 +109,7 @@ class Bowling
         elsif item[:is_strike?]
            # spare gives the total per frame + the next 2 rolls (or total frame score)
           score += (is_last) ? item[:score] : (next_frame(item)[:score]+10)
-         else
+        else
           score += item[:score] 
         end
       }
@@ -122,7 +122,7 @@ class Bowling
 
     def is_last_frame?
        @frames.length == (@number_frames)
-     end
+    end
     
     def is_spare?(item)
       return true if (item[:score]==10 && !item[:is_strike?]) 

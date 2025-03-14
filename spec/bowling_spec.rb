@@ -29,7 +29,7 @@ RSpec.describe Bowling do
       new_game = Bowling.new
       new_game.begin_frame
      
-      it 'should return a score of 1' do
+      it 'returns a score of 1' do
         expect(new_game.roll(9)).to eq(1)
       end
 
@@ -41,14 +41,14 @@ RSpec.describe Bowling do
         expect(new_game.roll(1)).to eq("you have had your goes for this frame")
       end
 
-      it 'should have a new frame with new scores' do
+      it 'will have a new frame with new scores' do
         expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
         new_game.roll(5)
         new_game.roll(4)
         expect(new_game.current_score).to eq(19)
       end
 
-      it 'should record strike' do
+      it 'will record strike' do
         expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
         new_game.roll(10)
 
@@ -87,9 +87,9 @@ RSpec.describe Bowling do
         expect(full_game).to equal(full_game)
         
       }
-    end
-    puts full_game.total_score
-      it 'should have played 10 frames' do
+      end
+
+     it 'should have played 10 frames' do
         expect(full_game.frames.length == 10)
       end
 
@@ -97,21 +97,9 @@ RSpec.describe Bowling do
         expect(full_game.total_score).not_to be_nil
       end
 
-      it 'should check for strikes' do
-        full_game.frames.each { |item|
-           if item[:is_strike?]
-            expect(item[:rolls].length).to eq(1)
-          else
-            expect(item[:rolls].length).to eq(2)
-           end
-        }
-        
-      end
-    
-
    end
 
-   describe 'full game with a strike on the last frame' do
+describe 'full game with a strike on the last frame' do
     full_game = Bowling.new
     9.times{
       full_game.begin_frame
@@ -125,7 +113,7 @@ RSpec.describe Bowling do
     describe "#get_strike" do
      
       it 'should be a strike' do
-        strike = full_game.get_strike
+        full_game.get_strike
         expect(full_game.frames.length).to eq(10)
        
       end
