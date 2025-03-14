@@ -18,11 +18,11 @@ RSpec.describe Bowling do
     subject {Bowling.new}
     it 'adds a frame to the game and check number of games is 9' do
       subject.begin_frame
-      expect(subject.number_frames_remaing).to eq(9)
+      expect(subject.number_frames_left).to eq(9)
     end
 
     it 'adds another frames to the same game and check number of games is no longer the same' do
-      expect{subject.begin_frame}.to change{subject.number_frames_remaing}.by(-1)
+      expect{subject.begin_frame}.to change{subject.number_frames_left}.by(-1)
     end
     
    describe '#roll' do
@@ -42,14 +42,14 @@ RSpec.describe Bowling do
       end
 
       it 'will have a new frame with new scores' do
-        expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
+        expect{new_game.begin_frame}.to change{new_game.number_frames_left}.by(-1)
         new_game.roll(5)
         new_game.roll(4)
         expect(new_game.current_score).to eq(19)
       end
 
       it 'will record strike' do
-        expect{new_game.begin_frame}.to change{new_game.number_frames_remaing}.by(-1)
+        expect{new_game.begin_frame}.to change{new_game.number_frames_left}.by(-1)
         new_game.roll(10)
 
         expect(new_game.current_score).to eq(29)
@@ -79,7 +79,7 @@ RSpec.describe Bowling do
 
    describe '#take_turn' do
     full_game = Bowling.new
-    it 'should play a full game and check object persistance' do 
+    it 'should play a full game and check object persistence' do
 
       10.times{
         full_game.begin_frame

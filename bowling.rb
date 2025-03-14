@@ -18,18 +18,18 @@ class Bowling
       {
          rolls: [],
          score: 0,
-         pins_remianing: pins_per_frame,
+         pins_left: pins_per_frame,
          is_strike?: false
       }
     end
 
 
-    def take_turn()
-      pins_remianing = roll(rand(@pins_per_frame)) 
+    def take_turn
+      pins_left = roll(rand(@pins_per_frame))
       # check if there are any spares
-      if pins_remianing > 0
-        # have another roll using a random nuber less than the number of pins remaining
-        roll(rand(pins_remianing))
+      if pins_left > 0
+        # have another roll using a random number less than the number of pins remaining
+        roll(rand(pins_left.to_i))
       end
       #check that final frame
       last_frame if is_last_frame? && @frames.last[:score] == 10
@@ -40,7 +40,7 @@ class Bowling
       strike_frame[:rolls] << 10
       strike_frame[:score] = @pins_per_frame
       strike_frame[:is_strike?] = true
-      strike_frame[:pins_remianing] = 10
+      strike_frame[:pins_left] = 10
       @frames << strike_frame
       last_frame if is_last_frame? && @frames.last[:score] == 10
       #puts @frames.length
@@ -48,11 +48,11 @@ class Bowling
 
 
     def last_frame
-      #rest the nimber of pins remianing
+      #reset the number of pins pins_left
       pins_left = @pins_per_frame
       #if strike then two extra rolls
       number_extra_rolls.times{ |number| 
-        # if first roll, use a random number under 10 othewise and random number < number o fpins remaing
+        # if first roll, use a random number under 10 othewise and random number < number of pins left
         pins_left = number == 0 ? roll(rand(10)) : roll(pins_left)
       }
       
@@ -71,14 +71,14 @@ class Bowling
       # add rolls to array in frame
       frame[:rolls] << number
       set_frame_score(frame, number)
-      set_pins_remianing(frame, number)
+      set_pins_left(frame, number)
       frame[:is_strike?] = number==10 && frame[:rolls].length == 1 ? true : false
-      frame[:pins_remianing] 
+      frame[:pins_left]
     end
 
-    def set_pins_remianing(frame, number)
-      pins = frame[:pins_remianing]
-      frame[:pins_remianing] = number > pins ? 0 : pins-number
+    def set_pins_left(frame, number)
+      pins = frame[:pins_left]
+      frame[:pins_left] = number > pins ? 0 : pins-number
     end
 
 
@@ -87,7 +87,7 @@ class Bowling
       frame[:score]  = score + number
     end
 
-    def number_frames_remaing
+    def number_frames_left
       @number_frames - @frames.length
     end
 
