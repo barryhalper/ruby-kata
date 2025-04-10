@@ -9,7 +9,14 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="RVM: ruby-3.3.4" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.5.23, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.6.0, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.13.0, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.3, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.3, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.2, RVM: ruby-3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.2, RVM: ruby-3.3.4) [gem]" level="application" />
   </component>
 </module>

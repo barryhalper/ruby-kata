@@ -76,9 +76,8 @@ RSpec.describe BowlingGame do
 
     before do
       game.roll(10)
-      game.roll(3)
       game.roll(4)
-      roll_many(game, 16, 0)
+      game.roll(5)
     end
 
     it "the score will be 24" do
@@ -96,6 +95,11 @@ RSpec.describe BowlingGame do
 
     it "the score will be 300" do
       expect(game.score).to eq 300
+    end
+
+    it "runs 2 frames" do
+
+
     end
   end
 

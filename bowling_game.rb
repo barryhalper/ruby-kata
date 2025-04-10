@@ -1,7 +1,5 @@
 class BowlingGame
 
-  attr_reader
-
   def initialize
     @score = 0
     @rolls = Array.new(21, 0)
